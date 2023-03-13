@@ -90,4 +90,93 @@ Game.Game.prototype = {
         }
         this.game.debug.spriteInfo(this.hero.getByName('hero'), 50, 50);
     },
+    createMap: function() {
+        this._timers = [];
+        this._coordsBrick = [];
+        this._brickPosition = [];
+        
+        this._map = this.add.tilemap('world');
+        this._map.addTilesetImage('playing-environment');
+        
+        if (typeof this._stageBomberman.map != 'undefined') this._map.objects.Objects = this._stageBomberman.map;
+        
+        this._map.objects.Objects.forEach(function(brick) {
+            if (brick.name == '' || brick.name.includes('brick')) brick.gid = 10;
+            else if (brick.name == 'power') brick.gid = 20;
+            else if (brick.name == 'door') brick.gid = 15;
+        }, this);
+        
+        this._map.setCollisionBetween(1, 14, true, 'Map');
+        
+        this._brick = this.add.group();
+        this._brick.enableBody = true;
+        this._brick.physicsBodyType = Phaser.Physics.ARCADE;
+
+        this._specialties = this.add.group();
+        this._specialties.enableBody = true;
+        this._specialties.physicsBodyType = Phaser.Physics.ARCADE;
+
+        this._soundFindTheDoor = this.add.audio('find-the-door');
+        this._soundStage = this.add.audio('stage-theme');
+
+        this._soundStage.loopFull();
+        
+        this.game.stage.backgroundColor = '#1F8B00';
+    
+        this._layer = this._map.createLayer('Map');
+        this._layer.resizeWorld();
+        
+        this._map.createFromObjects('Objects', 10, 'brick', 0, true, true, this._brick, Phaser.Sprite, false);
+        this._brick.callAll('animations.add', 'animations', 'wait', [0], 10, true);
+        this._brick.callAll('animations.add', 'animations', 'destroy', [1, 2, 3, 4, 5, 6], 10, true);
+        this._brick.callAll('animations.play', 'animations', 'wait');
+        this._brick.forEach(function(element) {
+            element.body.setSize(16, 16, 1, 1);
+            element.body.immovable = true;
+            element.smoothed = false;
+            this._brickPosition.push(Math.round(element.body.x)+','+Math.round(element.body.y));
+        }, this);
+        
+        var powers_group = ['power-1', 'ExtendExplosion', 'power-2', 'AddBomb', 'power-3', 'TimeExploitBomb'],
+            index = this.rnd.integerInRange(0, powers_group.length - 1);
+        
+        if (index % 2 != 0) index = 0;
+        
+        this._map.createFromObjects('Objects', 15, 'door', 0, true, true, this._specialties, Phaser.Sprite, false);
+        this._map.createFromObjects('Objects', 20, powers_group[index], 0, true, true, this._specialties, Phaser.Sprite, false);
+        
+        this._specialties.getByName('door').kill();
+        var power = this._specialties.getByName('power');
+        power.kill();
+        power.TypePower = powers_group[++index];
+        
+        this._crossroads = this.add.group();
+        this._crossroads.enableBody = true;
+        this._crossroads.physicsBodyType = Phaser.Physics.ARCADE;
+        
+         var distance = 40 * 2,
+             rows = 11 / 2,
+             cols = 35 / 2;
+        
+        for (var i = 0, y = 117, id = 0; i < rows; i++, y += distance) 
+            for (var j = 0, x = 55; j < cols; j++, x += distance, id++) {
+                //Modify JSON
+                this._map.objects.Crossroads.push(
+                        {
+                         "height":1.6,
+                         "id":id,
+                         "name":("crossroad"+id),
+                         "rotation":0,
+                         "type":"",
+                         "visible":true,
+                         "width":1.6,
+                         "x":x,
+                         "y":y,
+                         "gid":30
+                        }
+                );
+            }
+        
+        this._map.createFromObjects('Crossroads', 30, null, 0, true, true, this._crossroads, Phaser.Sprite, false);
+    },
 }
