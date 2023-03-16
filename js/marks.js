@@ -9,6 +9,9 @@ class Marks{
      this.undestructive = 'undestructive';
      this.fire = 'fire';
 
+     // Bonuses
+    this.bonus_bomb_plus = 'bonus_bomb_plus';
+    this.bonus_speed_plus = 'bonus_speed_plus';
   }
 }
 
