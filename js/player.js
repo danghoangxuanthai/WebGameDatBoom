@@ -29,4 +29,25 @@ class Player{
         else if ((direction == 'left') && (general_field.field[this.actualY()][Math.floor(this.x)] == marks.empty)) this.x -= this.speed;
       }
     }
+    placeBomb(){
+      return new Bomb(this.actualX(), this.actualY(), this.bombPower);
+    }
+  
+    _bonus_speed_plus(){
+      this.speed = Math.min(0.5, this.speed + 0.02);
+      this._display_speed();
+    }
+  
+    _bonus_bomb_plus(){
+      this.bombPower = Math.min(5, this.bombPower + 1);
+      this._display_bomb_power();
+    }
+  
+    _display_speed(){
+      document.getElementById(this.name + "_speed").innerHTML = Math.round(this.speed * 100) / 100;
+    }
+  
+    _display_bomb_power(){
+      document.getElementById(this.name + "_bomb-power").innerHTML = Math.round(this.bombPower * 100) / 100;
+    }
 }
