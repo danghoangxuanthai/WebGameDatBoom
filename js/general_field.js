@@ -19,6 +19,16 @@ class GeneralField{
           return marks.empty;
         }
       }
+      _randomBonusCell(){
+        let v = Math.random();
+        if (v < 0.05){
+          return marks.bonus_bomb_plus;
+        } else if (v < 0.1){
+          return marks.bonus_speed_plus;
+        } else{
+          return null;
+        }
+      }
    // Checks if Player1 can reach Player2
    _fieldIsValid(field){
     let arr = new Array(this.height).fill(false).map((row) => new Array(this.width).fill(false));
@@ -35,6 +45,11 @@ class GeneralField{
     }
     // Player1 can reach Player2
     return arr[this.height - 2][this.width - 2];
+  }
+  _generateBonuses(){
+    return  new Array(this.height).fill(true)
+    .map(row => new Array(this.width).fill(true)
+    .map(cell => this._randomBonusCell()));
   }
 
 }
