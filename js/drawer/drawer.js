@@ -34,4 +34,33 @@ class Drawer{
         }
       }
     }
+
+    drawPlayers(players){
+      players.forEach(player => this.sprites.drawTile(player.name, this.context, player.x, player.y));
+    }
+  
+    drawBombs(bombs){
+      bombs.forEach(bomb => this.sprites.drawTile(marks.bomb, this.context, bomb.x, bomb.y));
+    }
+  
+    loadingWindow(general_field){
+      for (let y = 0; y < general_field.height; y++){
+        for (let x = 0; x < general_field.width; x++){
+          this.sprites.drawTile(marks.empty, this.context, x, y);
+        }
+      }
+  
+      this.context.fillText("Press 'Enter'", 160, 160);
+      this.context.fillText("to start the game.", 120, 220);
+    }
+  
+    endGame(message, general_field){
+      for (let y = 0; y < general_field.height; y++){
+        for (let x = 0; x < general_field.width; x++){
+          this.sprites.drawTile(marks.undestructive, this.context, x, y);
+        }
+      }
+  
+      this.context.fillText(message, 120, 190);
+    }
 }  
