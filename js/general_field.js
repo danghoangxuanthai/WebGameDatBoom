@@ -46,6 +46,16 @@ class GeneralField{
     // Player1 can reach Player2
     return arr[this.height - 2][this.width - 2];
   }
+  _generateField(){
+    let arr = new Array(this.height).fill(true).map((row) =>
+    new Array(this.width).fill(true).map((cell) => this._randomCell()));
+    // Undestructive borders
+    for (let x = 0; x < this.width; x++){
+      arr[0][x] = marks.undestructive;
+      arr[this.height - 1][x] = marks.undestructive;
+    }
+  }
+
   _generateBonuses(){
     return  new Array(this.height).fill(true)
     .map(row => new Array(this.width).fill(true)
