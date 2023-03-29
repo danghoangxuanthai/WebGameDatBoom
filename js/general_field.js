@@ -54,6 +54,14 @@ class GeneralField{
       arr[0][x] = marks.undestructive;
       arr[this.height - 1][x] = marks.undestructive;
     }
+    for (let y = 0; y < this.height; y++){
+      arr[y][0] = marks.undestructive;
+      arr[y][this.width - 1] = marks.undestructive;
+    }
+     // Player 1
+     arr[1][1] = marks.empty;
+     arr[1][2] = marks.empty;
+     arr[2][1] = marks.empty;
   }
 
   _generateBonuses(){
