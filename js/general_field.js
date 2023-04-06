@@ -62,12 +62,19 @@ class GeneralField{
      arr[1][1] = marks.empty;
      arr[1][2] = marks.empty;
      arr[2][1] = marks.empty;
+     
+     // PLayer 2
+    arr[this.height - 2][this.width - 2] = marks.empty;
+    arr[this.height - 2][this.width - 3] = marks.empty;
+    arr[this.height - 3][this.width - 2] = marks.empty;
+    return arr;
   }
-
   _generateBonuses(){
     return  new Array(this.height).fill(true)
     .map(row => new Array(this.width).fill(true)
     .map(cell => this._randomBonusCell()));
   }
 
+
 }
+
