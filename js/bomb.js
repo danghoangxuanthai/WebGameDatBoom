@@ -28,8 +28,7 @@ class Bomb{
             return true;
           }
           return false;
-    
-    }
+      }
 
     _fire(players, general_field){
       this._burnCell(players, general_field, this.x, this.y);
@@ -46,7 +45,7 @@ class Bomb{
         if (this._burnCell(players, general_field, this.x, this.y - i)) break;
       }
     }
-  
+    
     _cleanFire(field){
       field[this.y][this.x] = marks.empty;
       let i = 1;
