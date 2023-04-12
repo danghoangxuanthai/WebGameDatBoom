@@ -1,0 +1,66 @@
+body{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+section{
+  display: flex;
+  /* justify-content: space-between; */
+  margin-top: 10px;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+h2{
+  margin: 0;
+  padding: 0;
+  height: 1rm;
+}
+
+.players-bar{
+  border-radius: 3px;
+  background-color: rgb(240, 240, 240);
+  border-style: solid;
+  border-width: 1px;
+}
+
+.players-bar, .player-bar, .player-skill_item{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.player-skill_item{
+  margin-left: 15px;
+}
+
+.player-skill_value{
+  font-size: 3rm;
+  margin-left: 10px;
+}
+
+.instructions{
+  margin: 20px;
+}
+
+.key{
+  text-align: center;
+  width: 100px;
+  border-radius: 3px;
+  background-color: rgb(240, 240, 240);
+  border-style: solid;
+  border-width: 1px;
+  margin-right: 10px;
+}
+
+.instructions_item{
+  display: flex;
+  margin: 5px;
+}
+
+@media only screen and (max-width: 1036px) {
+    aside {
+        display: none;
+    }
+}
