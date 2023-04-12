@@ -28,7 +28,7 @@ class Bomb{
             return true;
           }
           return false;
-    }
+      }
 
     _fire(players, general_field){
       this._burnCell(players, general_field, this.x, this.y);
