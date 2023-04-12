@@ -20,4 +20,3 @@ loadImage("img/tileset.png")
   });
 
 });
-

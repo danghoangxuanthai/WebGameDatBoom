@@ -69,4 +69,44 @@ class Bomb{
         i++;
       }
     }
+
+    _fire(players, general_field){
+      this._burnCell(players, general_field, this.x, this.y);
+      for (let i = 1; i <= this.power; i++){
+        if (this._burnCell(players, general_field, this.x + i, this.y)) break;
+      }
+      for (let i = 1; i <= this.power; i++){
+        if (this._burnCell(players, general_field, this.x - i, this.y)) break;
+      }
+      for (let i = 1; i <= this.power; i++){
+        if (this._burnCell(players, general_field, this.x, this.y + i)) break;
+      }
+      for (let i = 1; i <= this.power; i++){
+        if (this._burnCell(players, general_field, this.x, this.y - i)) break;
+      }
+    }
+  
+    _cleanFire(field){
+      field[this.y][this.x] = marks.empty;
+      let i = 1;
+      while (field[this.y][this.x + i] == marks.fire){
+        field[this.y][this.x + i] = marks.empty;
+        i++;
+      }
+      i = 1;
+      while (field[this.y][this.x - i] == marks.fire){
+        field[this.y][this.x - i] = marks.empty;
+        i++;
+      }
+      i = 1;
+      while (field[this.y + i][this.x] == marks.fire){
+        field[this.y + i][this.x] = marks.empty;
+        i++;
+      }
+      i = 1;
+      while (field[this.y - i][this.x] == marks.fire){
+        field[this.y - i][this.x] = marks.empty;
+        i++;
+      }
+    }
 }
