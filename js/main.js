@@ -18,4 +18,5 @@ loadImage("img/tileset.png")
   document.addEventListener('keydown', (e) => {
     if ((e.code === "Enter") && (!game.started)) update();
   });
+
 });
