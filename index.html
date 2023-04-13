@@ -1,34 +1,52 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>Bomberman</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
     <h1>BOMBERMAN</h1>
-    
-
+    <section>
       <div class="main-game">
         <canvas id="screen" width="544" height="384"></canvas>
         <div class="players-bar">
           <div class="player-bar player1-bar">
-            <h3 class=player-bar_player-name>Player1</h3>
+            <h3 class="player-bar_player-name">Player1</h3>
             <div class="player-skill_item">
-              <img src="img/rollers.png">
+              <img src="img/rollers.png" />
               <span class="player-skill_value" id="player1_speed">0</span>
             </div>
             <div class="player-skill_item">
-              <img src="img/bomb.png">
+              <img src="img/bomb.png" />
               <span class="player-skill_value" id="player1_bomb-power">0</span>
             </div>
           </div>
 
-          
-      </aside>
+          <div class="player-bar player2-bar">
+            <h3 class="player-bar_player-name">Player2</h3>
+            <div class="player-skill_item">
+              <img src="img/rollers.png" />
+              <span class="player-skill_value" id="player2_speed">0</span>
+            </div>
+            <div class="player-skill_item">
+              <img src="img/bomb.png" />
+              <span class="player-skill_value" id="player2_bomb-power">0</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
-    
-    <script src="js/game.js"></script>
+
+    <script src="js/marks.js"></script>
+    <script src="js/image_loader.js"></script>
+    <script src="js/sprite_sheet.js"></script>
+    <script src="js/drawer.js"></script>
     <script src="js/bomb.js"></script>
+    <script src="js/player.js"></script>
+    <script src="js/general_field.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/main.js"></script>
   </body>
 </html>
+
